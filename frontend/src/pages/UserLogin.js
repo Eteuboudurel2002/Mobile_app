@@ -12,28 +12,7 @@ export default function UserLogin() {
   const [password, setPassword] = useState("");
 
   const UserLoginAttempt = async function () {
-    // Note that this values come from state variables that we've declared before
-    const usernameValue = username;
-    const passwordValue = password;
     navigation.navigate("Home");
-    // Since the signUp method returns a Promise, we need to call it using await
-    /*return await Parse.User.signUp(usernameValue, passwordValue)
-      .then((createdUser) => {
-        // Parse.User.signUp returns the already created ParseUser object if successful
-        Alert.alert(
-          "Success!",
-          `User ${createdUser.get("username")} was successfully created!`
-        );
-        // Navigation.navigate takes the user to the screen named after the one
-        // passed as parameter
-        navigation.navigate("Home");
-        return true;
-      })
-      .catch((error) => {
-        // signUp can fail if any parameter is blank or failed an uniqueness check on the server
-        Alert.alert("Error!", error.message);
-        return false;
-      });*/
   };
 
   return (
