@@ -3,8 +3,7 @@ import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View } from "react-native";
 import i18next from "../../languages/i18n";
 import { useTranslation } from "react-i18next";
-import { Button } from "react-native";
-
+import { Button, TouchableOpacity } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import Icon from "react-native-vector-icons/FontAwesome";
 import CountryFlag from "react-native-country-flag";
@@ -84,6 +83,33 @@ export default function HomePage({ navigation }) {
   };
 
   const Questionnaire = () => {
+    const RoundedButton = ({ onPress, iconName }) => {
+      return (
+        <TouchableOpacity
+          style={iconName === "male" ? styles.buttonBlue : styles.buttonPink}
+          onPress={onPress}
+        >
+          <View style={styles.iconContainer}>
+            <Icon name={iconName} size={24} color="#fff" style={styles.icon} />
+          </View>
+        </TouchableOpacity>
+      );
+    };
+
+    const AgeButton = ({ onPress }) => {
+      return (
+        <TouchableOpacity style={styles.buttonAge} onPress={onPress}>
+          <View style={styles.iconContainer}>
+            <Text>{"Age"}</Text>
+          </View>
+        </TouchableOpacity>
+      );
+    };
+
+    const handleButtonPress = () => {
+      // Function to handle button press
+      console.log("Button pressed!");
+    };
     return (
       <>
         <View style={[styles.container, styles.questionnaireContainer]}>
@@ -103,10 +129,30 @@ export default function HomePage({ navigation }) {
             backgroundColor="#4A99E9"
             onPress={() => navigation.navigate("Login")}
           ></Icon.Button>
-
-          <StatusBar style="auto" />
         </View>
-        <View style={styles.container}>
+        <View style={styles.qcontainer}>
+          <Text style={styles.question}>{t("Sex")}</Text>
+          <View style={styles.answerContainer}>
+            <RoundedButton iconName={"male"} onPress={handleButtonPress} />
+            <RoundedButton iconName={"female"} onPress={handleButtonPress} />
+          </View>
+          <View style={styles.answerContainer}>
+            <Text style={styles.buttonLabel}>{"Male"}</Text>
+            <Text style={styles.buttonLabel}>{"Female"}</Text>
+          </View>
+          <Text style={styles.question}>{t("Age")}</Text>
+          <View style={styles.answerContainer}>
+            <AgeButton onPress={handleButtonPress} />
+            <AgeButton onPress={handleButtonPress} />
+          </View>
+          <View style={styles.answerContainer}>
+            <AgeButton onPress={handleButtonPress} />
+            <AgeButton onPress={handleButtonPress} />
+          </View>
+          <Button
+            title="Next"
+            //onPress={setCurrentPage(CurrentPage + 1)}
+          />
           <StatusBar style="auto" />
         </View>
       </>
@@ -121,6 +167,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
+  qcontainer: {
+    flex: 1,
+    alignItems: "flex-start",
+    padding: 30,
+    justifyContent: "center",
+  },
   questionnaireContainer: {
     position: "absolute", // Pour placer les boutons en haut à droite
     top: 0,
@@ -131,5 +183,66 @@ const styles = StyleSheet.create({
   },
   buttonSpacer: {
     width: 15, // Espacement entre les boutons
+  },
+  answerContainer: {
+    flexDirection: "row",
+    justifyContent: "center", // Ensures buttons are spaced evenly
+    width: "100%", // Ensures the container takes full width
+  },
+
+  question: {
+    marginVertical: 35,
+    fontSize: 20,
+    textAlign: "left",
+    fontSize: 20,
+    fontWeight: "bold",
+  },
+
+  answer: {
+    marginVertical: 15,
+    marginHorizontal: 28,
+  },
+
+  buttonBlue: {
+    backgroundColor: "#007bff",
+    borderRadius: 10, // Adjust this value to control the roundness of the edges
+    paddingVertical: 20,
+    paddingHorizontal: 23,
+    marginVertical: 18,
+    marginHorizontal: 25,
+  },
+  buttonPink: {
+    backgroundColor: "#ff00a6",
+    borderRadius: 10, // Adjust this value to control the roundness of the edges
+    paddingVertical: 20,
+    paddingHorizontal: 23,
+    marginVertical: 18,
+    marginHorizontal: 25,
+  },
+
+  buttonAge: {
+    borderWidth: 2, // Set the border width to create an outline
+    borderColor: "#000", // Set the border color to black
+    borderRadius: 20,
+    paddingVertical: 30,
+    paddingHorizontal: 30,
+    marginVertical: 20,
+    marginHorizontal: 20,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  buttonText: {
+    color: "#fff",
+    fontSize: 16,
+    fontWeight: "bold",
+    textAlign: "center",
+  },
+
+  buttonLabel: {
+    color: "#000",
+    fontSize: 16,
+    fontWeight: "bold",
+    textAlign: "center",
+    marginHorizontal: 32,
   },
 });

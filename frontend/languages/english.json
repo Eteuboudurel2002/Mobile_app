@@ -10,6 +10,7 @@
         "DontHaveAccont" : "You don't have an account ? ",
         "CreateAccount" : "Create an account",
         "Login" : "Login",
-        "AgeQuestion" : "Age"
+        "AgeQuestion" : "Age",
+        "Sex" : "Sex"
     }
 }
