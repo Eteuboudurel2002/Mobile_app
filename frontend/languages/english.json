@@ -1,6 +1,15 @@
 {
     "translation" : {
         "WelcomeText" : "welcome to i2hm",
-        "ChooseLang" : "Prefered language"
+        "ChooseLang" : "Prefered language",
+        "Username" : "Username",
+        "Password" : "Password",
+        "Country" : "Country",
+        "Signup" : "Sign up",
+        "HaveAccount" : "Already have an account ? ",
+        "DontHaveAccont" : "You don't have an account ? ",
+        "CreateAccount" : "Create an account",
+        "Login" : "Login",
+        "AgeQuestion" : "Age"
     }
 }
